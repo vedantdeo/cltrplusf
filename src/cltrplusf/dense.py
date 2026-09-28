@@ -16,11 +16,11 @@ from pathlib import Path
 
 import numpy as np
 
-from entropic.config import TOP_K
-from entropic.retrieval.chunk import Inventory
-from entropic.retrieval.corpus import CACHE_DIR
-from entropic.retrieval.embed import Embedder, Vectors
-from entropic.retrieval.hits import Hit
+from aigent.config import TOP_K
+from aigent.retrieval.chunk import Inventory
+from aigent.retrieval.corpus import CACHE_DIR
+from aigent.retrieval.embed import Embedder, Vectors
+from aigent.retrieval.hits import Hit
 
 
 @dataclass(frozen=True)

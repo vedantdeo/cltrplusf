@@ -9,32 +9,32 @@ import os
 
 from dotenv import load_dotenv
 
-from entropic.adapters import spec
-from entropic.adapters.client import Client
-from entropic.messages import Thinking
+from aigent.adapters import spec
+from aigent.adapters.client import Client
+from aigent.messages import Thinking
 
 load_dotenv()
 
 
 # Which client `llm` talks to; its settings live in `adapters/cfg_<name>.py`, and the three models
 # below are that client's, overridable one at a time for a run.
-CLIENT: str = os.environ.get("ENTROPIC_CLIENT", "anthropic")
+CLIENT: str = os.environ.get("AIGENT_CLIENT", "anthropic")
 ACTIVE = spec(CLIENT)
 
-MODEL: str = os.environ.get("ENTROPIC_MODEL", ACTIVE.model)
-JUDGE_MODEL: str = os.environ.get("ENTROPIC_JUDGE_MODEL", ACTIVE.judge_model)
-SMALL_MODEL: str = os.environ.get("ENTROPIC_SMALL_MODEL", ACTIVE.small_model)
+MODEL: str = os.environ.get("AIGENT_MODEL", ACTIVE.model)
+JUDGE_MODEL: str = os.environ.get("AIGENT_JUDGE_MODEL", ACTIVE.judge_model)
+SMALL_MODEL: str = os.environ.get("AIGENT_SMALL_MODEL", ACTIVE.small_model)
 
 
 # --- Budget ceilings -------------------------------------------------------------------------
 # Five scales: one request, one turn of an agent, one interactive run, one workflow, one eval over
 # a dataset. `pricing` enforces them.
 
-MAX_USD_PER_REQUEST: float = float(os.environ.get("ENTROPIC_MAX_USD_PER_REQUEST", "0.25"))
-MAX_USD_PER_TURN: float = float(os.environ.get("ENTROPIC_MAX_USD_PER_TURN", "0.60"))
-MAX_USD_PER_RUN: float = float(os.environ.get("ENTROPIC_MAX_USD_PER_RUN", "1.00"))
-MAX_USD_PER_WORKFLOW: float = float(os.environ.get("ENTROPIC_MAX_USD_PER_WORKFLOW", "0.25"))
-MAX_USD_PER_EVAL: float = float(os.environ.get("ENTROPIC_MAX_USD_PER_EVAL", "2.00"))
+MAX_USD_PER_REQUEST: float = float(os.environ.get("AIGENT_MAX_USD_PER_REQUEST", "0.25"))
+MAX_USD_PER_TURN: float = float(os.environ.get("AIGENT_MAX_USD_PER_TURN", "0.60"))
+MAX_USD_PER_RUN: float = float(os.environ.get("AIGENT_MAX_USD_PER_RUN", "1.00"))
+MAX_USD_PER_WORKFLOW: float = float(os.environ.get("AIGENT_MAX_USD_PER_WORKFLOW", "0.25"))
+MAX_USD_PER_EVAL: float = float(os.environ.get("AIGENT_MAX_USD_PER_EVAL", "2.00"))
 # Assumed per web search: the API adds results mid-call, where the free count cannot see them.
 WEB_SEARCH_RESULT_TOKENS = 10_000
 

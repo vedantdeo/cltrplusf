@@ -18,13 +18,13 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
-from entropic.config import (
+from aigent.config import (
     FURNITURE_EDGE_LINES,
     FURNITURE_MIN_PAGES,
     FURNITURE_RATIO,
     PAGE_SEPARATOR,
 )
-from entropic.retrieval.chunk import Document
+from aigent.retrieval.chunk import Document
 
 REPO = Path(__file__).resolve().parents[3]
 CORPUS_DIR = REPO / "corpus"

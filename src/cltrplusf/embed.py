@@ -1,6 +1,6 @@
 """Turning text into vectors with a local model.
 
-Anthropic ships no embedding model, so this is the one part of Entropic running on someone else's
+Anthropic ships no embedding model, so this is the one part of aigent running on someone else's
 weights. Queries take an instruction prefix and passages do not; vectors come out L2-normalised;
 `count_truncated` reports what the model's token limit actually cut.
 """
@@ -13,7 +13,7 @@ from typing import Protocol, cast
 import numpy as np
 from numpy.typing import NDArray
 
-from entropic.config import EMBED_BATCH, EMBED_MODEL, EMBED_QUERY_PREFIX
+from aigent.config import EMBED_BATCH, EMBED_MODEL, EMBED_QUERY_PREFIX
 
 Vectors = NDArray[np.float32]
 

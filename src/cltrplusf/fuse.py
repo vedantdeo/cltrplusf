@@ -12,8 +12,8 @@ from __future__ import annotations
 from collections import defaultdict
 from collections.abc import Sequence
 
-from entropic.config import RRF_K, TOP_K
-from entropic.retrieval.hits import Hit
+from aigent.config import RRF_K, TOP_K
+from aigent.retrieval.hits import Hit
 
 
 def reciprocal_rank_fusion(

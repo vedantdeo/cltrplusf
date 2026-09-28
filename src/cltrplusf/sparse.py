@@ -17,9 +17,9 @@ import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
-from entropic.config import BM25_B, BM25_K1, TOP_K
-from entropic.retrieval.chunk import Inventory
-from entropic.retrieval.hits import Hit
+from aigent.config import BM25_B, BM25_K1, TOP_K
+from aigent.retrieval.chunk import Inventory
+from aigent.retrieval.hits import Hit
 
 # Words and bare numbers. `34,000` and `52.3` survive as one token, which is the point of having a
 # lexical ranker at all — splitting them hands the digits back to the same blur BM25 exists to fix.

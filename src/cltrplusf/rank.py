@@ -11,14 +11,14 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Protocol
 
-from entropic.config import FUSE_DEPTH, RERANK_CANDIDATES, TOP_K
-from entropic.retrieval.chunk import Inventory
-from entropic.retrieval.dense import DenseIndex
-from entropic.retrieval.embed import Embedder, LocalEmbedder
-from entropic.retrieval.fuse import reciprocal_rank_fusion
-from entropic.retrieval.hits import Hit, rank_ids
-from entropic.retrieval.rerank import LocalReranker, Reranker, rerank
-from entropic.retrieval.sparse import SparseIndex
+from aigent.config import FUSE_DEPTH, RERANK_CANDIDATES, TOP_K
+from aigent.retrieval.chunk import Inventory
+from aigent.retrieval.dense import DenseIndex
+from aigent.retrieval.embed import Embedder, LocalEmbedder
+from aigent.retrieval.fuse import reciprocal_rank_fusion
+from aigent.retrieval.hits import Hit, rank_ids
+from aigent.retrieval.rerank import LocalReranker, Reranker, rerank
+from aigent.retrieval.sparse import SparseIndex
 
 # Three bases, each with and without a cross-encoder over its own candidates, so a table of them
 # separates what reach buys from what ordering buys.
