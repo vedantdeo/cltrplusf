@@ -18,7 +18,14 @@ before reading the tree.
 | `dense`, `sparse`, `fuse`, `rerank` | the rankers | `config`, `chunk`, `hits`, `embed`, `corpus` (`dense`, for its cache dir) |
 | `rank` | `build_ranker`: the methods combined | the rankers |
 | `keys` | keyed search over table rows | `rank`, `chunk`, `embed`, `rerank` |
-| `testing` | fakes for tests here and in aigent | `corpus`, `embed` |
+| `tables.model` | `Piece`, `Cell`, `Row` (label, cells, values, children, total, `checked`), `Table` | nothing |
+| `tables.lines` | words into lines of pieces inside a box; dates made whole; bold from the glyphs | `line_rows`, `filed`, `config` |
+| `tables.grid` | Docling's columns by its cells' boxes, split where two printed figure columns sit in one; every piece placed | `printed`, `config` |
+| `tables.header` | where the body begins (`header_rows`); the label column's edge (`label_right`) | `printed`, `config` |
+| `tables.rows` | body lines into rows; a wrapped label joined up, down or around its values (`wrap`) | `header`, `printed`, `config` |
+| `tables.nest` | the section tree; totals checked by their sums (`adds_up`, `addends`), the section a total closes chosen by them | `config` |
+| `tables.read` | `read_table`, `read_tables`, `keys` | the above, `filed` |
+| `testing` | fakes for tests here and in aigent | `corpus`, `embed`, `tables.model` |
 
 ## Invariants
 
@@ -26,6 +33,30 @@ before reading the tree.
 - The Docling cache is keyed by the source of the functions that decide a reading; editing one
   forces a ~92-minute re-parse.
 - Every setting lives in `config`.
+
+## How `tables` decides
+
+- **Lines and columns** (2026-11-27, Vedant: "words-first to get the coarse table, then Docling's
+  table margins to make the cells correct"): every word in Docling's table box is kept, one row per
+  printed line, each piece in the Docling column it overlaps most; a Docling column holding two
+  printed figure columns is split at them. On 850 bake-off tables the prototype lost no number
+  against Docling V1's 1.42%; TableFormer V2 lost 10.3%, cell matching off 12.1%, Granite Vision
+  2.1% on the 8 pages it finished at ~4 minutes a page.
+- **Header rows:** the lines above the first value line, less one-phrase section labels; a small
+  number is a value only under a row label; a column-number line ("234567") counts only when its
+  digits rise by one each, no separator (a test found "1,234" read as column numbers).
+- **Wraps:** a lowercase opener, a connective or an open bracket joins lines; a plain label over a
+  row at its own indent is that row's first line; a label may wrap around its values.
+- **Nesting** (Vedant: index the innermost level; a parent's own rows are a section of their own;
+  the layout proposes, arithmetic decides): numbered note titles on top, then indent, bold and
+  capitals; a label under a label is its child; a value row with rows indented under it is a
+  parent; a total closes the open section whose rows add up to it, marked `checked="sum"`.
+- **Scores** (`scripts/table_eval.py`, labels blind, held-out apart): header rows 45/49 tuned,
+  29/33 held out; wraps 38/40, 32/36; nesting rows 93.4%, 91.5% (two tables a side unscored, their
+  rows now split otherwise than when labelled). Over every born-digital filed PDF: 12,074 tables,
+  0 of 580,382 printed numbers lost; 4,073 of 6,814 testable totals add up (59.8%); the rest are
+  mostly formula rows (net = gross - depreciation), figures labelled "Total", and lists continued
+  from another page.
 
 ## History
 

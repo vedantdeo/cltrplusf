@@ -18,7 +18,21 @@ which depends on it, asks the questions and grades the answers.
 | `chunk` | Documents into chunks: by sentence, heading or element |
 | `embed`, `dense`, `sparse`, `fuse`, `rerank`, `rank`, `hits` | The rankers and how they combine |
 | `keys` | Keyed search over table rows and sections |
-| `testing` | Fakes for tests: Docling documents built in code, an embedder and a reranker |
+| `tables` | Financial tables read from their printed words: every number kept, header lines apart, wrapped labels joined, rows nested into sections checked by their totals, and `keys()` for each innermost section |
+| `testing` | Fakes for tests: Docling documents built in code, a printed PDF, an embedder and a reranker |
+
+## Tables
+
+```python
+from cltrplusf.tables import keys, read_tables
+
+for table in read_tables(pdf_path, docling_document):
+    for path, rows in keys(table, "Borrowings"):
+        ...  # ("Borrowings", "Secured"), [Row("Term loans", ...), ..., Row("Total", ...)]
+```
+
+`scripts/table_eval.py` scores it against hand labels in `evals/reference/tables/` and, with
+`--all`, over every born-digital filed PDF: numbers kept and totals that add up. Free.
 
 ## Where the corpus lives
 
