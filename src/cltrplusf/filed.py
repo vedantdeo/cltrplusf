@@ -231,3 +231,8 @@ def load_lines_cached(
         stale.unlink(missing_ok=True)
     write_cached(kept, rebuilt)
     return rebuilt
+
+
+def lines_fingerprint() -> str:
+    """The hash of everything that decides how a filed PDF's tables are re-rowed."""
+    return _LINES_FINGERPRINT
