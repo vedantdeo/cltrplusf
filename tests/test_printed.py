@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from aigent.facts.printed import ENUMERATOR, figure_row, figures_only, is_figure, number
+from cltrplusf.printed import ENUMERATOR, figure_row, figures_only, is_figure, number
 
 
 @pytest.mark.parametrize(

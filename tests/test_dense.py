@@ -14,13 +14,12 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from aigent.retrieval import dense
-from aigent.retrieval.chunk import Document, Inventory, by_sentence
-from aigent.retrieval.dense import DenseIndex, read_store, store_file, text_key
-from aigent.retrieval.embed import Vectors
-from aigent.retrieval.hits import rank_ids
-
-from ..conftest import FAKE_DIMENSIONS, BagOfWordsEmbedder
+from cltrplusf import dense
+from cltrplusf.chunk import Document, Inventory, by_sentence
+from cltrplusf.dense import DenseIndex, read_store, store_file, text_key
+from cltrplusf.embed import Vectors
+from cltrplusf.hits import rank_ids
+from cltrplusf.testing import FAKE_DIMENSIONS, BagOfWordsEmbedder
 
 REVENUE = "Revenue for the year rose seven per cent on stronger retail volumes across the country. "
 RISK = "Commodity price risk is hedged quarterly under a policy the board reviews every year now. "
@@ -262,7 +261,7 @@ def test_building_embeds_in_slices_logging_each_and_matches_one_pass(
     inventory = _inventory(REVENUE, RISK, DIVIDEND, REVENUE + RISK, RISK + DIVIDEND)
     monkeypatch.setattr(dense, "EMBED_LOG_EVERY", 2)
 
-    with caplog.at_level(logging.INFO, logger="aigent.retrieval.dense"):
+    with caplog.at_level(logging.INFO, logger="cltrplusf.dense"):
         index = DenseIndex.build(inventory, embedder)
 
     assert np.allclose(index.matrix, embedder.embed_documents(inventory.texts()))
@@ -279,7 +278,7 @@ def test_a_cached_build_says_whether_it_embedded_or_read(
 ) -> None:
     inventory = _inventory(REVENUE, RISK)
 
-    with caplog.at_level(logging.INFO, logger="aigent.retrieval.dense"):
+    with caplog.at_level(logging.INFO, logger="cltrplusf.dense"):
         DenseIndex.build_cached(inventory, embedder, tmp_path)
         DenseIndex.build_cached(inventory, embedder, tmp_path)
 

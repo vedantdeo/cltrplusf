@@ -11,14 +11,14 @@ from collections.abc import Callable, Collection
 from dataclasses import dataclass
 from typing import Protocol
 
-from aigent.config import FUSE_DEPTH, RERANK_CANDIDATES, TOP_K
-from aigent.retrieval.chunk import Inventory
-from aigent.retrieval.dense import DenseIndex
-from aigent.retrieval.embed import Embedder, LocalEmbedder
-from aigent.retrieval.fuse import reciprocal_rank_fusion
-from aigent.retrieval.hits import Hit, rank_ids
-from aigent.retrieval.rerank import LocalReranker, Reranker, rerank
-from aigent.retrieval.sparse import SparseIndex
+from cltrplusf.chunk import Inventory
+from cltrplusf.config import FUSE_DEPTH, RERANK_CANDIDATES, TOP_K
+from cltrplusf.dense import DenseIndex
+from cltrplusf.embed import Embedder, LocalEmbedder
+from cltrplusf.fuse import reciprocal_rank_fusion
+from cltrplusf.hits import Hit, rank_ids
+from cltrplusf.rerank import LocalReranker, Reranker, rerank
+from cltrplusf.sparse import SparseIndex
 
 # Three bases, each with and without a cross-encoder over its own candidates, so a table of them
 # separates what reach buys from what ordering buys.

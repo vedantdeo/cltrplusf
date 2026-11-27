@@ -9,10 +9,8 @@ from __future__ import annotations
 from collections.abc import Callable
 
 import pytest
-from underhood.tooldata.labels import Label, check_call
 
-from aigent.config import CHUNK_MIN_CHARS
-from aigent.retrieval.chunk import (
+from cltrplusf.chunk import (
     Document,
     Inventory,
     Splitter,
@@ -26,9 +24,9 @@ from aigent.retrieval.chunk import (
     sentences,
     text_label,
 )
-from aigent.retrieval.corpus import assembled, elements_of
-
-from .conftest import Grid, Heading, Piece, Running, docling
+from cltrplusf.config import CHUNK_MIN_CHARS
+from cltrplusf.corpus import assembled, elements_of
+from cltrplusf.testing import Grid, Heading, Piece, Running, docling
 
 FILLER = "The company reported steady progress across every operating segment this year. "
 
@@ -485,18 +483,6 @@ def test_a_table_takes_its_page_s_scale_even_when_read_after_it_but_not_another_
 
     assert "(C in millions, except per share data) = ×1000000" in first.text.split("\n")[0]
     assert "millions" not in second.text.split("\n")[0], "the next page states no scale"
-
-
-def test_a_scale_in_a_label_lets_a_scaled_figure_be_checked_against_its_chunk() -> None:
-    """The point of the label: a number whose scale the table's heading states is now provable."""
-    rows = tuple(("Revenue from operations", "9,74,864", "9,01,064") for _ in range(1))
-    table = Grid(rows=(("Particulars", "2025", "2024"), *rows), header_rows=1)
-    document = _assembled([[Heading("Statement of Profit and Loss"), "(Rs in crore)", table]])
-
-    [chunk] = [c for c in by_element()(document) if c.text.startswith("[Table")]
-
-    label = Label("revenue", 9_748_640_000_000.0, "INR", 2025, None, "974864 * 10**7")
-    assert check_call(label, chunk.text), chunk.text
 
 
 @pytest.mark.parametrize(

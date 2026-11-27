@@ -21,11 +21,11 @@ from pathlib import Path
 
 import numpy as np
 
-from aigent.config import EMBED_LOG_EVERY, EMBED_SAVE_EVERY, TOP_K
-from aigent.retrieval.chunk import Inventory
-from aigent.retrieval.corpus import CACHE_DIR
-from aigent.retrieval.embed import Embedder, Vectors
-from aigent.retrieval.hits import Hit
+from cltrplusf.chunk import Inventory
+from cltrplusf.config import EMBED_LOG_EVERY, EMBED_SAVE_EVERY, TOP_K
+from cltrplusf.corpus import CACHE_DIR
+from cltrplusf.embed import Embedder, Vectors
+from cltrplusf.hits import Hit
 
 log = logging.getLogger(__name__)
 

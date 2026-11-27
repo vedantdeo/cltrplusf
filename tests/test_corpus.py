@@ -2,7 +2,7 @@
 
 The load-bearing table is the one on page offsets. Every citation downstream names a page, and
 offsets taken before normalisation are wrong in a way nothing else in the pipeline notices. PDFs
-are read by a fake Docling (`conftest.fake_docling`), so no test downloads its models.
+are read by a fake Docling (`cltrplusf.testing.fake_docling`), so no test downloads its models.
 """
 
 from __future__ import annotations
@@ -19,9 +19,9 @@ from docling_core.types.doc.document import DoclingDocument
 from pypdf import PdfReader
 from pypdf.generic import DictionaryObject, StreamObject
 
-from aigent.config import DOCLING_QUEUE_MAX_SIZE, PAGE_SEPARATOR
-from aigent.retrieval import corpus
-from aigent.retrieval.corpus import (
+from cltrplusf import corpus
+from cltrplusf.config import DOCLING_QUEUE_MAX_SIZE, PAGE_SEPARATOR
+from cltrplusf.corpus import (
     FY25_REPORTS,
     assembled,
     cache_file,
@@ -39,8 +39,7 @@ from aigent.retrieval.corpus import (
     table_rows,
     to_document,
 )
-
-from .conftest import (
+from cltrplusf.testing import (
     Footer,
     Grid,
     Heading,

@@ -12,10 +12,9 @@ from collections.abc import Sequence
 
 import pytest
 
-from aigent.retrieval.hits import Hit, rank_ids
-from aigent.retrieval.rerank import rerank
-
-from ..conftest import KeywordReranker
+from cltrplusf.hits import Hit, rank_ids
+from cltrplusf.rerank import rerank
+from cltrplusf.testing import KeywordReranker
 
 CANDIDATES = [Hit("c1", 0.9), Hit("c2", 0.8), Hit("c3", 0.7)]
 TEXTS = [

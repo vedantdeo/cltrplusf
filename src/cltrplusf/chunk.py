@@ -13,7 +13,7 @@ from bisect import bisect_right
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, field
 
-from aigent.config import (
+from cltrplusf.config import (
     CHUNK_CHARS,
     CHUNK_MAX_CHARS,
     CHUNK_MIN_CHARS,

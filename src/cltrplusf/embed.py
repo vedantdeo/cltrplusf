@@ -13,7 +13,12 @@ from typing import Protocol, cast
 import numpy as np
 from numpy.typing import NDArray
 
-from aigent.config import EMBED_BATCH, EMBED_MODEL, EMBED_QUERY_PREFIXES, LOCAL_MODEL_DTYPE
+from cltrplusf.config import (
+    EMBED_BATCH,
+    EMBED_MODEL,
+    EMBED_QUERY_PREFIXES,
+    LOCAL_MODEL_DTYPE,
+)
 
 Vectors = NDArray[np.float32]
 

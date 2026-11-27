@@ -1,172 +1,17 @@
-"""Settings: credentials, model choice, and the ceilings we are willing to spend.
+"""Settings for parsing, chunking and search: models, budgets of characters, and ranking depths.
 
-Values only, plus the one function that builds a client. Pricing and enforcement live in `pricing`.
+Values only. The corpus location is not a setting: a caller names it in `CLTRPLUSF_HOME`.
 """
 
 from __future__ import annotations
 
-import os
-from typing import Final
-
-from dotenv import load_dotenv
-
-from aigent.llm.adapters import spec
-from aigent.llm.adapters.client import Client
-from aigent.llm.messages import Cache, CacheTtl, Thinking
-
-load_dotenv()
-
-
-# Which client `llm` talks to; its settings live in `llm/adapters/cfg_<name>.py`, and the three
-# models below are that client's, overridable one at a time for a run.
-CLIENT: str = os.environ.get("AIGENT_CLIENT", "anthropic")
-ACTIVE = spec(CLIENT)
-
-MODEL: str = os.environ.get("AIGENT_MODEL", ACTIVE.model)
-JUDGE_MODEL: str = os.environ.get("AIGENT_JUDGE_MODEL", ACTIVE.judge_model)
-SMALL_MODEL: str = os.environ.get("AIGENT_SMALL_MODEL", ACTIVE.small_model)
-
-
-# --- Budget ceilings -------------------------------------------------------------------------
-# Five scales: one request, one turn of an agent, one interactive run, one agent task in Project 2,
-# and one eval over a dataset. `pricing` enforces them.
-
-MAX_USD_PER_REQUEST: float = float(os.environ.get("AIGENT_MAX_USD_PER_REQUEST", "0.25"))
-MAX_USD_PER_TURN: float = float(os.environ.get("AIGENT_MAX_USD_PER_TURN", "0.60"))
-MAX_USD_PER_RUN: float = float(os.environ.get("AIGENT_MAX_USD_PER_RUN", "1.00"))
-MAX_USD_PER_EVAL: float = float(os.environ.get("AIGENT_MAX_USD_PER_EVAL", "2.00"))
-MAX_USD_PER_TASK: float = float(os.environ.get("AIGENT_MAX_USD_PER_TASK", "0.50"))
-# Assumed per web search: the API adds results mid-call, where the free count cannot see them.
-WEB_SEARCH_RESULT_TOKENS = 10_000
-
-
-# --- Call shape ------------------------------------------------------------------------------
-# One output cap per call site. The pre-flight guard prices the full cap, so an oversized number
-# trips the per-request ceiling for nothing; thinking tokens count against it too. Side by side
-# they show which calls are the expensive ones. A client raises or lowers one of these for itself
-# in its own `llm/adapters/cfg_<name>.py`, by key, and inherits every cap it does not name.
-
-DEFAULT_MAX_TOKENS: dict[str, int] = {
-    "ANSWER": 256,  # two sentences plus five chunk ids is ~140, with thinking off
-    "CRITIQUE": 256,  # evaluator-optimizer
-    "DRAFT": 384,
-    "FACTS": 1024,  # chaining: up to six claims, each with a verbatim quote
-    "FIGURE_ANSWER": 256,  # a few figures with their calls: 90 on average in the smoke run
-    "FIGURE_QUESTIONS": 256,  # three one-line questions
-    "HEADLINE": 128,  # a five-field record is ~45 tokens with THINKING_EVAL off
-    "JUDGE": 512,  # a verdict is a bool and a sentence or two; Opus reasons at length first
-    "NOTE": 384,
-    "PLAN": 512,  # orchestrator-workers
-    "QUESTION": 512,
-    "ROUTE": 128,  # routing: a label, a report and one line of reason
-    "ROUTED": 768,
-    "SECTION": 384,  # parallelization
-    "SYNTHESIS": 768,
-    "TOOL_LOOP": 4096,
-    "VOTE": 256,
-    "WORKER": 384,
-}
-
-
-def max_tokens(site: str, client: Client | None = None) -> int:
-    """The cap for one call site: the client's override, or the shared default.
-
-    The active client unless one is named — as it must be by a call sent to a client chosen at run
-    time, which the constants below cannot know.
-    """
-    settings = ACTIVE if client is None else client
-    return settings.max_tokens.get(site, DEFAULT_MAX_TOKENS[site])
-
-
-# Resolved once, so a call site imports a number as it always did. `tests.test_config` checks that
-# these names and the table above stay in step.
-MAX_TOKENS_ANSWER = max_tokens("ANSWER")
-MAX_TOKENS_CRITIQUE = max_tokens("CRITIQUE")
-MAX_TOKENS_DRAFT = max_tokens("DRAFT")
-MAX_TOKENS_FACTS = max_tokens("FACTS")
-MAX_TOKENS_FIGURE_ANSWER = max_tokens("FIGURE_ANSWER")
-MAX_TOKENS_FIGURE_QUESTIONS = max_tokens("FIGURE_QUESTIONS")
-MAX_TOKENS_HEADLINE = max_tokens("HEADLINE")
-MAX_TOKENS_JUDGE = max_tokens("JUDGE")
-MAX_TOKENS_NOTE = max_tokens("NOTE")
-MAX_TOKENS_PLAN = max_tokens("PLAN")
-MAX_TOKENS_QUESTION = max_tokens("QUESTION")
-MAX_TOKENS_ROUTE = max_tokens("ROUTE")
-MAX_TOKENS_ROUTED = max_tokens("ROUTED")
-MAX_TOKENS_SECTION = max_tokens("SECTION")
-MAX_TOKENS_SYNTHESIS = max_tokens("SYNTHESIS")
-MAX_TOKENS_TOOL_LOOP = max_tokens("TOOL_LOOP")
-MAX_TOKENS_VOTE = max_tokens("VOTE")
-MAX_TOKENS_WORKER = max_tokens("WORKER")
-
-# Off for eval runs: thinking wobbles, and Claude 5 deprecated temperature and top_p.
-THINKING_EVAL = False
-
-# The same setting as the wire wants it. Built once so two call sites cannot disagree about
-# whether thinking is on; turning it on means raising the output cap at every site that sends it.
-THINKING_EVAL_PARAM: Thinking = (
-    {"type": "enabled", "budget_tokens": 1024} if THINKING_EVAL else {"type": "disabled"}
-)
-
-# How long a cache entry lives; the 1-hour one writes at 2x input, not 1.25x.
-CACHE_TTL: CacheTtl = "5m"
-CACHE_PARAM: Cache = (
-    {"type": "ephemeral"} if CACHE_TTL == "5m" else {"type": "ephemeral", "ttl": "1h"}
-)
-
-# How many times the agent may go round before giving up.
-MAX_AGENT_TURNS = 25  # a backstop against a loop of cheap turns; the budget ends a real one first
-MIN_TOKENS_FINAL_ANSWER = 1024  # a tool loop out of room answers only if this much output fits
-
-# How many calls one concurrent batch keeps in flight at once.
-MAX_PARALLEL_CALLS = 4
-EVAL_WORKERS = 1  # eval rows in flight at once; above 1 needs the run's worst case admitted
-
-# How often a submitted batch is checked, and how long to wait for it: the API's own 24 hours.
-BATCH_POLL_SECONDS = 30
-BATCH_WAIT_SECONDS = 24 * 60 * 60
-
-# Workflows split a task into small, fully specified calls: the case thinking adds least to.
-THINKING_WORKFLOW_PARAM: Thinking = {"type": "disabled"}
-
-# The most subtasks an orchestrator may hand out, and drafts an evaluator may send back.
-MAX_PLAN_TASKS = 4
-MAX_REFINE_ROUNDS = 3
-MAX_GRAPH_STEPS = 10  # LangGraph's own default is 10,007 supersteps
-
-# How many failing rows an eval report prints before it truncates.
-MAX_FAILURES_SHOWN = 10
-
-
-# --- Tracing ---------------------------------------------------------------------------------
-# Langfuse reads its own keys and host from the environment; these say whether and as what to send.
-
-TRACING: str = os.environ.get("AIGENT_TRACING", "auto")  # `off`, or on whenever both keys are set
-TRACE_ENVIRONMENT: str = os.environ.get("AIGENT_TRACE_ENVIRONMENT", "development")
-
-
-# --- Guardrails ------------------------------------------------------------------------------
-# The longest task the agent takes, and the longest answer it may show, in characters.
-
-MAX_TASK_CHARS = 4000
-MAX_ANSWER_CHARS = 8000
-
-
-# --- MCP server ------------------------------------------------------------------------------
-
-MCP_SERVER_NAME = "aigent-reports"  # what an MCP client lists the server as
-MCP_SERVER_LOG_LEVEL: Final = "WARNING"  # its stderr is the client's console: no per-request lines
-MCP_CALL_TIMEOUT_SECONDS = 120.0  # one tool call; our server's first search loads its models
-MCP_MAX_RESULT_CHARS = 20_000  # of a tool's text, before it reaches a model
-
-
-# --- Retrieval -------------------------------------------------------------------------------
-# Week 2's knobs. The embedding model runs locally, so none of these spends anything.
-
 # Its 1024 dimensions and 512-token limit are read off the model, not set here.
 EMBED_MODEL = "BAAI/bge-large-en-v1.5"
+
 EMBED_BATCH = 64
+
 EMBED_LOG_EVERY = 1024  # texts embedded between progress lines
+
 EMBED_SAVE_EVERY = 4096  # texts a cached build embeds between writes of its store
 
 # Query prefixes for models that do not declare one in `prompts`, from each model card; a model
@@ -183,32 +28,34 @@ LOCAL_MODEL_DTYPE = "float32"
 # In characters, not tokens: the tokenizer belongs to the embedding model. ~1200 chars is ~300
 # tokens, leaving room under the model's 512 before it starts truncating.
 CHUNK_CHARS = 1200
+
 CHUNK_OVERLAP_CHARS = 200
+
 CHUNK_OVERLAP_SENTENCES = 1
+
 CHUNK_MAX_CHARS = 2000
+
 CHUNK_MIN_CHARS = 80
+
 # `by_element` budgets: a piece ends only between rows, sentences or lines; one longer stays whole.
 ELEMENT_TABLE_CHARS = 1000
+
 ELEMENT_TEXT_CHARS = 1000
 
 # What `by_heading` accepts as a heading in PDF text, where no markup survives to say so.
 HEADING_MAX_CHARS = 80
-HEADING_MAX_WORDS = 12
-HEADING_MIN_CAPITAL_RATIO = 0.6
 
-# What a passage needs before it is worth a question: long enough to hold a fact, and mostly prose.
-PASSAGE_MIN_CHARS = 400
-PASSAGE_MIN_ALPHA = 0.85
+HEADING_MAX_WORDS = 12
+
+HEADING_MIN_CAPITAL_RATIO = 0.6
 
 # How many chunks a retriever returns, and therefore how many an answer can cite.
 TOP_K = 5
 
-# How much of an unparseable reply an eval's error row keeps, so the report shows what came back.
-UNPARSED_PREVIEW_CHARS = 200
-
 # BM25's two shape parameters, at the values the literature settled on. `K1` is where term
 # frequency saturates; `B` is how hard a long chunk is penalised (0 not at all, 1 fully).
 BM25_K1 = 1.5
+
 BM25_B = 0.75
 
 # How deep each ranker's list goes into fusion. Past this the reciprocal contributions are all
@@ -223,7 +70,9 @@ RRF_K = 60
 # The reranker reads every candidate with the query, so this is a forward pass per row, not a
 # lookup. Retrieve this many cheaply, score them all, keep the best TOP_K.
 RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
+
 RERANK_CANDIDATES = 20
+
 RERANK_BATCH = 32
 
 # The method to rank with outside the eval: the best on questions not written from the passages.
@@ -236,16 +85,22 @@ KEY_DEPTH = 400
 # Only lines this close to the top or bottom of a page are candidates; one whose digits-masked form
 # reaches this fraction of the pages is furniture. Below the page floor, nothing is.
 FURNITURE_MIN_PAGES = 4
+
 FURNITURE_EDGE_LINES = 2
+
 FURNITURE_RATIO = 0.2
 
 # What joins two pages into one document text. Read as a paragraph break by every splitter.
 PAGE_SEPARATOR = "\n\n"
+
 # Docling, every chunker's parser: the reports carry a text layer, so OCR stays off; the device
 # is Docling's choice of what the machine has (MPS here, CPU in CI).
 DOCLING_OCR = False
+
 DOCLING_DEVICE = "auto"
+
 DOCLING_QUEUE_MAX_SIZE = 8  # pages held between Docling's pipeline stages; its 100 outgrew 16 GB
+
 # Fonts drawing ₹ on a keyboard key, by family, and the keys each draws it on; nothing else maps.
 PDF_RUPEE_KEYS: dict[str, str] = {
     "ITFRupee": "CDEHIJKL",
@@ -254,51 +109,8 @@ PDF_RUPEE_KEYS: dict[str, str] = {
     "RupeeForadian": "`",
 }
 
+VERIFY_LINE_GAP = 0.5  # a word this many line heights below a line's middle starts the next line
 
-# --- Toy fine-tune ---------------------------------------------------------------------------
-# Template headlines that train underhood's toy LoRA: how many, the share kept back to validate on,
-# the seed that makes a set repeatable, and the client whose wire the rows are rendered for.
-SYNTHETIC_HEADLINES = 200
-SYNTHETIC_VALID_FRACTION = 0.1
-SYNTHETIC_SEED = 0
-SYNTHETIC_CLIENT = "local-1.7b"
+VERIFY_BAND_MIN_SHARE = 0.15  # a figure column prints on at least this share of figure lines
 
-# The figure fine-tune's training labels (extraction.figure_training): chunks per training report
-# naming a core metric, stating a scaled figure, and a plain one; questions per chunk; and the
-# ceiling on each batch.
-FIGURE_LABEL_CORE_PER_DOC = 60
-FIGURE_LABEL_SCALED_PER_DOC = 50
-FIGURE_LABEL_PLAIN_PER_DOC = 30
-FIGURE_LABEL_QUESTIONS = 3
-FIGURE_LABEL_SEED = 0
-FIGURE_LABEL_MODEL = "claude-sonnet-5"
-MAX_USD_FIGURE_LABELS = 9.00
-# The answer batch goes in slices held under the ceiling. Its system prompt is cached for five
-# minutes, renewed by each read, and written by one ordinary call first, since a batch starts all
-# its requests at once and the smoke batches took 77-156 seconds.
-FIGURE_ANSWER_CACHE: Cache = CACHE_PARAM
-FIGURE_ANSWER_SLICE = 300
-
-# v4's trajectories (analyst.teach): the teacher, how many questions and how they are drawn, how
-# many run at once, the run's ceiling, and what a typical trajectory holds, for the estimate.
-RESEARCH_TEACHER_MODEL = "claude-sonnet-5"
-RESEARCH_TEACH_QUESTIONS = 310  # Vedant: ~200 kept first; the 10-19 smoke run kept 13 of 20
-RESEARCH_TEACH_SEED = 0
-RESEARCH_TEACH_NAMED_SHARE = 0.8  # of the single questions (Vedant): named metrics, the rest other
-RESEARCH_TEACH_PAIRED_SHARE = 0.33  # Vedant: about a third ask about two companies
-RESEARCH_TEACH_WORKERS = 8
-MAX_USD_RESEARCH_TEACH = 12.00
-RESEARCH_TEACH_CACHE: Cache = CACHE_PARAM
-RESEARCH_TYPICAL_TURNS = 4  # two searches, a calculate turn, the answer
-RESEARCH_TYPICAL_OUTPUT = 220  # tokens a turn writes, on average: tool calls, then the figures
-SEARCH_RESULT_TOKENS = 1500  # five passages of ~295 tokens, measured over the six filings
-RESEARCH_DESCRIPTION_WORDS = 10  # Vedant: an other figure's description, in the teacher's own words
-
-# --- Classical baseline ----------------------------------------------------------------------
-# Project 1a's TF-IDF + logistic regression on `direction`: word n-grams, and the C grid that
-# cross-validation on each training set picks from.
-BASELINE_NGRAMS = (1, 2)
-BASELINE_CS = (0.01, 0.1, 1.0, 10.0, 100.0, 1000.0)
-BASELINE_CV_FOLDS = 5
-BASELINE_MAX_ITER = 1000
-BASELINE_TOP_TERMS = 5
+VERIFY_WRAP_GAP = 2.6  # a label wraps onto a line at most this many line heights below

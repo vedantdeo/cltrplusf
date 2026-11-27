@@ -18,8 +18,8 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Protocol, cast
 
-from aigent.config import LOCAL_MODEL_DTYPE, RERANK_BATCH, RERANK_MODEL, TOP_K
-from aigent.retrieval.hits import Hit
+from cltrplusf.config import LOCAL_MODEL_DTYPE, RERANK_BATCH, RERANK_MODEL, TOP_K
+from cltrplusf.hits import Hit
 
 
 class Reranker(Protocol):

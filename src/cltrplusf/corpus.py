@@ -12,6 +12,7 @@ from __future__ import annotations
 import hashlib
 import inspect
 import json
+import os
 import re
 import unicodedata
 from collections import Counter
@@ -47,7 +48,8 @@ from pypdf.generic import (
     StreamObject,
 )
 
-from aigent.config import (
+from cltrplusf.chunk import Document, Heading, Table
+from cltrplusf.config import (
     DOCLING_DEVICE,
     DOCLING_OCR,
     DOCLING_QUEUE_MAX_SIZE,
@@ -57,9 +59,8 @@ from aigent.config import (
     PAGE_SEPARATOR,
     PDF_RUPEE_KEYS,
 )
-from aigent.retrieval.chunk import Document, Heading, Table
 
-REPO = Path(__file__).resolve().parents[3]
+REPO = Path(os.environ.get("CLTRPLUSF_HOME") or Path.cwd()).resolve()  # the project holding corpus/
 CORPUS_DIR = REPO / "corpus"
 CACHE_DIR = CORPUS_DIR / ".cache"
 TRAINING_DIR = CORPUS_DIR / "training"  # the fine-tune's reports; load_corpus never reads it

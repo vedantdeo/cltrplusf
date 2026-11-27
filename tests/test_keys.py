@@ -7,11 +7,11 @@ from dataclasses import dataclass, field
 
 import pytest
 
-from aigent.retrieval import keys as module
-from aigent.retrieval.chunk import Document, Inventory, Table, by_element
-from aigent.retrieval.corpus import assembled, elements_of
-from aigent.retrieval.hits import Hit
-from aigent.retrieval.keys import (
+from cltrplusf import keys as module
+from cltrplusf.chunk import Document, Inventory, Table, by_element
+from cltrplusf.corpus import assembled, elements_of
+from cltrplusf.hits import Hit
+from cltrplusf.keys import (
     ParentRanker,
     build_keys,
     column_headers,
@@ -20,10 +20,8 @@ from aigent.retrieval.keys import (
     table_context,
     years_in,
 )
-from aigent.retrieval.rank import Scope
-
-from ..conftest import BagOfWordsEmbedder
-from .conftest import Grid, Heading, Piece, docling
+from cltrplusf.rank import Scope
+from cltrplusf.testing import BagOfWordsEmbedder, Grid, Heading, Piece, docling
 
 STATEMENT = Grid(
     rows=(

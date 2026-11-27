@@ -12,8 +12,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Literal
 
-from aigent.config import KEY_DEPTH, RERANK_CANDIDATES, SEARCH_METHOD, TOP_K
-from aigent.retrieval.chunk import (
+from cltrplusf.chunk import (
     Chunk,
     Document,
     Inventory,
@@ -23,10 +22,11 @@ from aigent.retrieval.chunk import (
     sentences,
     squeeze,
 )
-from aigent.retrieval.embed import Embedder
-from aigent.retrieval.hits import Hit
-from aigent.retrieval.rank import Indexes, Ranker, Reranked, Scope, build_ranker
-from aigent.retrieval.rerank import LocalReranker, Reranker
+from cltrplusf.config import KEY_DEPTH, RERANK_CANDIDATES, SEARCH_METHOD, TOP_K
+from cltrplusf.embed import Embedder
+from cltrplusf.hits import Hit
+from cltrplusf.rank import Indexes, Ranker, Reranked, Scope, build_ranker
+from cltrplusf.rerank import LocalReranker, Reranker
 
 Kind = Literal["chunk", "row", "table", "sentence"]
 

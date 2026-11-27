@@ -1,0 +1,50 @@
+# Lint, types and tests: the mains CI (main.yml) here, and aigent's release, which calls it with a
+# token that can read this repo.
+name: checks
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: the commit to check, instead of the one that started the run
+        type: string
+        default: ""
+    secrets:
+      token:
+        description: a token that can read cltrplusf, for a caller in another repo
+        required: false
+
+jobs:
+  quality:
+    name: lint · types · tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: vedantdeo/cltrplusf # a called workflow would otherwise check out its caller
+          ref: ${{ inputs.ref }}
+          token: ${{ secrets.token || github.token }}
+          persist-credentials: false
+
+      # Pinned to a full version on purpose: setup-uv publishes no floating major tags.
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          enable-cache: true
+
+      - name: Install the locked environment
+        run: uv sync --locked
+
+      - name: ruff · lint
+        run: uv run --no-sync ruff check --output-format=github .
+
+      - name: ruff · format
+        if: ${{ !cancelled() }}
+        run: uv run --no-sync ruff format --check .
+
+      - name: pyright
+        if: ${{ !cancelled() }}
+        run: uv run --no-sync pyright
+
+      - name: pytest
+        if: ${{ !cancelled() }}
+        run: uv run --no-sync pytest -q

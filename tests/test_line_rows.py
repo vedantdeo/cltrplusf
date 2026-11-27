@@ -1,8 +1,7 @@
-"""`facts.line_rows` and the re-rowed loading of filed PDFs in `facts.documents`."""
+"""`line_rows` and the re-rowed loading of filed PDFs in `filed`."""
 
 from __future__ import annotations
 
-import inspect
 from collections.abc import Sequence
 from dataclasses import replace
 from pathlib import Path
@@ -19,12 +18,11 @@ from pypdf.generic import (
     RectangleObject,
 )
 
-from aigent.facts import documents, line_rows
-from aigent.facts.line_rows import Box, Layout, PdfBox, Word
-from aigent.retrieval.chunk import Document
-from aigent.retrieval.corpus import assembled, elements_of, table_rows
-
-from ..retrieval.conftest import Grid, build_pdf, docling
+from cltrplusf import filed, line_rows
+from cltrplusf.chunk import Document
+from cltrplusf.corpus import assembled, elements_of, table_rows
+from cltrplusf.line_rows import Box, Layout, PdfBox, Word
+from cltrplusf.testing import Grid, build_pdf, docling
 
 
 def _chars(
@@ -653,8 +651,8 @@ def _rendered(grid: Grid) -> tuple[Document, DoclingDocument]:
 
 def test_a_table_docling_merged_is_re_rowed_by_its_printed_lines(tmp_path: Path) -> None:
     document, parsed = _rendered(_MERGED)
-    words = documents.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
-    [table] = documents.with_line_rows(document, parsed, words).tables
+    words = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
+    [table] = filed.with_line_rows(document, parsed, words).tables
     assert table.rows == (
         ("Particulars", "Jun", "Mar"),
         ("Revenue", "100", "90"),
@@ -693,8 +691,8 @@ def test_a_table_that_cannot_be_re_rowed_stays_as_docling_read_it(
     if split:
         item = parsed.tables[0]
         item.prov.append(item.prov[0].model_copy())
-    words = documents.read_words(_printed(tmp_path / "p.pdf", printed), [1])
-    assert documents.with_line_rows(document, parsed, words).tables == document.tables
+    words = filed.read_words(_printed(tmp_path / "p.pdf", printed), [1])
+    assert filed.with_line_rows(document, parsed, words).tables == document.tables
 
 
 def test_a_re_rowed_table_keeps_its_caption_and_doclings_marks_over_the_rows_kept(
@@ -704,8 +702,8 @@ def test_a_re_rowed_table_keeps_its_caption_and_doclings_marks_over_the_rows_kep
     document, parsed = _rendered(grid)
     [before] = document.tables
     assert (before.header_rows, before.sections) == (3, (1, 3))
-    words = documents.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
-    [table] = documents.with_line_rows(document, parsed, words).tables
+    words = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
+    [table] = filed.with_line_rows(document, parsed, words).tables
     assert table.rows[:2] == (("Results",), ("Particulars", "Jun", "Mar")), table.rows
     assert (table.header_rows, table.sections) == (2, (1,)), table
 
@@ -713,9 +711,9 @@ def test_a_re_rowed_table_keeps_its_caption_and_doclings_marks_over_the_rows_kep
 def test_a_rendered_table_matching_none_of_doclings_is_refused(tmp_path: Path) -> None:
     document, _ = _rendered(_MERGED)
     _, parsed = _rendered(Grid(rows=(("Cash", "1", "2"),), box=(50, 600, 350, 700)))
-    words = documents.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
+    words = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
     with pytest.raises(ValueError, match="matches none of Docling's"):
-        documents.with_line_rows(document, parsed, words)
+        filed.with_line_rows(document, parsed, words)
 
 
 def test_a_filed_pdf_is_re_rowed_once_and_a_re_rowing_change_reuses_its_words(
@@ -733,23 +731,23 @@ def test_a_filed_pdf_is_re_rowed_once_and_a_re_rowing_change_reuses_its_words(
 
     def read(path: Path, pages: Sequence[int]) -> dict[int, list[Word]]:
         reads.append(pages)
-        return documents.read_words(path, pages)
+        return filed.read_words(path, pages)
 
     def words(
         path: Path, doc_id: str, reading: DoclingDocument, cache_dir: Path
     ) -> dict[int, list[Word]]:
-        return documents.load_words_cached(path, doc_id, reading, cache_dir, read)
+        return filed.load_words_cached(path, doc_id, reading, cache_dir, read)
 
-    first = documents.load_lines_cached(path, "D", cache, parse, words)
-    again = documents.load_lines_cached(path, "D", cache, parse, words)
+    first = filed.load_lines_cached(path, "D", cache, parse, words)
+    again = filed.load_lines_cached(path, "D", cache, parse, words)
     assert (loads, reads) == (["parsed"], [[1]]), "the second load read the cache"
     assert again.tables == first.tables and len(first.tables[0].rows) == 4
-    kept = documents.lines_file(path, "D", cache)
+    kept = filed.lines_file(path, "D", cache)
     kept.write_text("{not json", encoding="utf-8")
-    documents.load_lines_cached(path, "D", cache, parse, words)
+    filed.load_lines_cached(path, "D", cache, parse, words)
     assert (len(loads), len(reads)) == (2, 1), "a broken file is rebuilt from the kept words"
-    monkeypatch.setattr(documents, "_LINES_FINGERPRINT", "0123456789ab")
-    documents.load_lines_cached(path, "D", cache, parse, words)
+    monkeypatch.setattr(filed, "_LINES_FINGERPRINT", "0123456789ab")
+    filed.load_lines_cached(path, "D", cache, parse, words)
     assert (len(loads), len(reads)) == (3, 1), "a re-rowing change reads the PDF no more"
     assert not kept.exists(), "the superseded file is swept"
 
@@ -766,21 +764,16 @@ def test_a_filed_pdfs_words_are_read_once_for_its_pages_with_tables(
         reads.append(pages)
         return {page: [("100", (1.0, 2.0, 3.0, 4.0), False)] for page in pages}
 
-    first = documents.load_words_cached(path, "D", parsed, cache, read)
-    again = documents.load_words_cached(path, "D", parsed, cache, read)
+    first = filed.load_words_cached(path, "D", parsed, cache, read)
+    again = filed.load_words_cached(path, "D", parsed, cache, read)
     assert reads == [[2]] and again == first == {2: [("100", (1.0, 2.0, 3.0, 4.0), False)]}
-    kept = documents.words_file(path, "D", cache)
+    kept = filed.words_file(path, "D", cache)
     kept.write_bytes(b"not gzip")
-    documents.load_words_cached(path, "D", parsed, cache, read)
+    filed.load_words_cached(path, "D", parsed, cache, read)
     assert len(reads) == 2, "a file that does not read back is rebuilt"
-    monkeypatch.setattr(documents, "_WORDS_FINGERPRINT", "0123456789ab")
-    documents.load_words_cached(path, "D", parsed, cache, read)
+    monkeypatch.setattr(filed, "_WORDS_FINGERPRINT", "0123456789ab")
+    filed.load_words_cached(path, "D", parsed, cache, read)
     assert len(reads) == 3 and not kept.exists(), "the superseded file is swept"
-
-
-def test_a_filed_pdf_is_read_re_rowed_by_default() -> None:
-    default = inspect.signature(documents.load_verify_document).parameters["pdf"].default
-    assert default is documents.load_lines_cached
 
 
 def test_a_columns_edges_are_its_median_cells_so_a_stray_wide_cell_moves_none(
@@ -825,12 +818,12 @@ def test_layout_reads_header_and_columns_of_words(grid: Grid, header: int, text:
 def test_a_pdf_is_read_with_its_rupee_fonts_as_the_rupee_sign(tmp_path: Path) -> None:
     path = tmp_path / "report.pdf"
     path.write_bytes(build_pdf([["({`} crore)"]], second_font="Rupee"))
-    pdf = documents._opened(path)
+    pdf = filed._opened(path)
     words = "".join(w for w, _, _ in line_rows.page_words(pdf[0]))
     assert "₹" in words and "`" not in words, words
 
 
 def test_a_pdfs_words_are_kept_to_a_hundredth_of_a_point(tmp_path: Path) -> None:
-    [(page, words)] = documents.read_words(_printed(tmp_path / "p.pdf", _PRINTED[:3]), [1]).items()
+    [(page, words)] = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED[:3]), [1]).items()
     assert page == 1 and [w for w, _, _ in words] == ["Particulars", "Jun", "Mar"], words
     assert all(round(c, 2) == c for _, box, _ in words for c in box), words

@@ -11,13 +11,13 @@ from collections.abc import Callable
 
 import pytest
 
-from aigent.config import FUSE_DEPTH, RERANK_CANDIDATES, SEARCH_METHOD
-from aigent.retrieval.chunk import Document, Inventory, by_sentence
-from aigent.retrieval.dense import DenseIndex
-from aigent.retrieval.embed import Embedder
-from aigent.retrieval.fuse import reciprocal_rank_fusion
-from aigent.retrieval.hits import Hit, rank_ids
-from aigent.retrieval.rank import (
+from cltrplusf.chunk import Document, Inventory, by_sentence
+from cltrplusf.config import FUSE_DEPTH, RERANK_CANDIDATES, SEARCH_METHOD
+from cltrplusf.dense import DenseIndex
+from cltrplusf.embed import Embedder
+from cltrplusf.fuse import reciprocal_rank_fusion
+from cltrplusf.hits import Hit, rank_ids
+from cltrplusf.rank import (
     METHODS,
     HybridRanker,
     Indexes,
@@ -25,9 +25,8 @@ from aigent.retrieval.rank import (
     Reranked,
     build_ranker,
 )
-from aigent.retrieval.rerank import rerank
-
-from ..conftest import BagOfWordsEmbedder, KeywordReranker
+from cltrplusf.rerank import rerank
+from cltrplusf.testing import BagOfWordsEmbedder, KeywordReranker
 
 QUERY = "dividend policy"
 DOCUMENTS = [

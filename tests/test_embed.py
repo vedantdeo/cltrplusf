@@ -8,9 +8,9 @@ import pytest
 import sentence_transformers
 import torch
 
-from aigent.config import EMBED_MODEL, EMBED_QUERY_PREFIXES, LOCAL_MODEL_DTYPE
-from aigent.retrieval.embed import LocalEmbedder, query_prefix_of
-from aigent.retrieval.rerank import LocalReranker
+from cltrplusf.config import EMBED_MODEL, EMBED_QUERY_PREFIXES, LOCAL_MODEL_DTYPE
+from cltrplusf.embed import LocalEmbedder, query_prefix_of
+from cltrplusf.rerank import LocalReranker
 
 BGE = EMBED_QUERY_PREFIXES["BAAI/bge-large-en-v1.5"]
 

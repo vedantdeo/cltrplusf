@@ -12,8 +12,8 @@ import pypdfium2 as pdfium
 import pypdfium2.raw as pdfium_c
 from docling_core.types.doc.items.table.table import TableItem
 
-from aigent.facts.cfg_facts import VERIFY_BAND_MIN_SHARE, VERIFY_LINE_GAP, VERIFY_WRAP_GAP
-from aigent.facts.printed import ENUMERATOR, NIL, figure_row, figures_only, is_figure
+from cltrplusf.config import VERIFY_BAND_MIN_SHARE, VERIFY_LINE_GAP, VERIFY_WRAP_GAP
+from cltrplusf.printed import ENUMERATOR, NIL, figure_row, figures_only, is_figure
 
 Box = tuple[float, float, float, float]  # left, top, right, bottom on the page as displayed
 PdfBox = tuple[float, float, float, float]  # left, bottom, right, top in the page's own space
