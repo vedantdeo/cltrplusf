@@ -114,3 +114,13 @@ VERIFY_LINE_GAP = 0.5  # a word this many line heights below a line's middle sta
 VERIFY_BAND_MIN_SHARE = 0.15  # a figure column prints on at least this share of figure lines
 
 VERIFY_WRAP_GAP = 2.6  # a label wraps onto a line at most this many line heights below
+
+# Reading a table from its printed words (`tables`): the gaps that decide lines, columns, wraps and
+# nesting, in line heights or points.
+TABLE_LINE_GAP = 0.5  # a word this many line heights below a line's middle starts the next line
+TABLE_BAND_GAP = 4.0  # figures whose right edges sit this close in points print in one column
+TABLE_BAND_MIN_LINES = 2  # a figure column prints on at least this many lines
+TABLE_PHRASE_GAP = 1.5  # in line heights: a wider gap inside a line separates columns
+TABLE_INDENT_STEP = 6.0  # points of indent that put one row under another
+TABLE_SAME_INDENT = 1.5  # points within which two lines start at one indent
+TABLE_RANK_GRID = 3.0  # indents are compared on a grid this many points wide

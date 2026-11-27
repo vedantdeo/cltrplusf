@@ -1,0 +1,1113 @@
+{
+ "rule": "for a body line printing only a label: up continues the row above, down runs into the line below, none stands alone; line counts the table's printed lines from its top",
+ "lines": [
+  {
+   "name": "annual/BAJAJ-AUTO-FY24.pdf",
+   "page": 159,
+   "table": 0,
+   "line": 36,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x 410.7   V (1,396.02) (1,086.14)",
+    "   x 414.4   V 8,843.77 6,707.27",
+    ">> x  71.4     Change in assets and liabilities",
+    "   x  88.5   V i) (Increase)/decrease in inventories (297.72) (167.39)",
+    "   x  88.5   V ii) (Increase)/decrease in trade receivables (316.28) (267.03)"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY24.pdf",
+   "page": 264,
+   "table": 1,
+   "line": 3,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    ">> x  43.1 B   Investment income",
+    "   x  43.3   V Interest income on fixed income securities 195.55 306.99",
+    "   x  42.8   V Amortisation of (premium)/discount on acquisition of fixed income securities 96.50 (2.00)"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY25.pdf",
+   "page": 189,
+   "table": 0,
+   "line": 45,
+   "split": "tune",
+   "wrap": "down",
+   "context": [
+    "   x  99.8     20,000,000 (20,000,000) Kotak Nifty SDL Apr 2032",
+    "   x 144.2   V Top 12 Equal Weight Index Fund 24.68 23.08 – –",
+    ">> x  99.6     48,396,620 (48,396,620) Kotak Nifty SDL Plus AAA PSU Bond",
+    "   x 144.3   V Jul 2028 60:40 Index Fund 57.72 53.74 – –",
+    "   x 281.9   V Carried over 5,307.25 6,039.77 1,117.86 165.69"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY25.pdf",
+   "page": 202,
+   "table": 0,
+   "line": 5,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  42.6   V At 31 March 2023 149.60 259.61 (40.07) (23.99) 345.15",
+    ">> x  43.1     Charged/(credited)",
+    "   x  57.1   V - to profit and loss 28.96 27.45 (2.78) 5.99 59.62",
+    "   x  57.1   V - to other comprehensive income – 93.24 8.93 – 102.17"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY25.pdf",
+   "page": 206,
+   "table": 0,
+   "line": 4,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x  43.1 B   Inventories at the end of the year",
+    "   x  42.8   V Work-in-progress 56.42 84.63 28.21",
+    "   x  43.3   V Finished goods and traded goods 688.86 695.83 6.97"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY25.pdf",
+   "page": 282,
+   "table": 0,
+   "line": 18,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  71.7     No funds relating to other than identified and ongoing projects are required to be transferred ",
+    "   x  71.3     specified funds.",
+    ">> x  56.8 B   b) Amount spent in cash during the year on:",
+    "   x  71.4   V i) Construction/acquisition of any asset – –",
+    "   x  71.4   V ii) On purposes other than (i) above 157.32 131.72"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 169,
+   "table": 0,
+   "line": 2,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    ">> x  85.1 B   Aggregate amount granted during the year",
+    "   x  99.8     a) Companies",
+    "   x  99.4   V – Subsidiary 323.54"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 169,
+   "table": 0,
+   "line": 7,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  99.4   V – Others –",
+    "   x 100.0   V b) Employees 2.04",
+    ">> x  85.6 B   Balance outstanding as at Balance Sheet date",
+    "   x  99.8     a) Companies",
+    "   x  99.4   V – Subsidiary 1,634.92"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 176,
+   "table": 0,
+   "line": 17,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x 464.6 B V 1,116.91 1,279.21",
+    "   x  43.0 B   Current liabilities",
+    ">> x  43.4     Financial liabilities",
+    "   x  57.5   V Borrowings 19 – 800.00",
+    "   x  56.9     Trade payables"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 205,
+   "table": 0,
+   "line": 24,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x 144.1   V Amortised Cost – – 294.10 –",
+    "   x  71.4 B   In Fixed Deposits:",
+    ">> x  85.5 B   Unquoted:",
+    "   x 146.6   V – 8.18% Bajaj Finance Ltd. Fixed Deposit – – – 250.00",
+    "   x 146.6   V – 8.00% Bajaj Finance Ltd. Fixed Deposit – – – 30.00"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 205,
+   "table": 0,
+   "line": 31,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x 146.6   V – 6.65% Bajaj Finance Ltd. Fixed Deposit – – 145.00 –",
+    "   x 144.1   V Amortised Cost – – 745.00 280.00",
+    ">> x  71.4 B   In Fixed maturity plans",
+    "   x  85.5 B   Unquoted:",
+    "   x  99.5   V 44,000,000 (44,000,000) Units of Aditya Birla Sun Life Fixed"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 233,
+   "table": 0,
+   "line": 6,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  43.3   V ECL (18.43) (14.45)",
+    "   x  43.3   V Net carrying amount 2,712.20 2,282.64",
+    ">> x  43.1 B   Reconciliation of impairment allowance – Trade receivable",
+    "   x  43.1 B V Particulars (₹ In Crore)",
+    "   x  43.1 B V Impairment allowance as on 31 March 2024 19.37"
+   ]
+  },
+  {
+   "name": "annual/BAJAJ-AUTO-FY26.pdf",
+   "page": 272,
+   "table": 0,
+   "line": 20,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  91.3   V xiii) Expenditure on intangible assets (including under development) (161.93) (60.30)",
+    "   x 359.6   V (7,355.63) (1,363.69)",
+    ">> x  91.3     xiv) Investment income",
+    "   x 105.5   V Interest income on fixed income securities 147.24 123.81",
+    "   x 105.5   V Interest income on fixed deposits 102.47 124.78"
+   ]
+  },
+  {
+   "name": "annual/HDFCBANK-FY24.pdf",
+   "page": 517,
+   "table": 1,
+   "line": 7,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x 306.9   V Add: Unclaimed of e-HDFC 11 12,516",
+    "   x 307.6   V Less: Claims received and 167 1,17,650",
+    ">> x 307.2     shares transferred *",
+    "   x 307.6   V Less: shares transferred to 369 1,59,150",
+    "   x 307.6     IEPF account"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY24.pdf",
+   "page": 316,
+   "table": 0,
+   "line": 18,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x  50.5     On employees’ separation and",
+    "   x  50.7   V retirement etc. 86.28 65.91 5.72 – – 0.32 158.23",
+    ">> x  50.5     On provision for doubtful",
+    "   x  50.5   V debts/advances 60.32 0.16 – – – 0.09 60.57",
+    "   x  50.5   V On State and Central taxes etc. 69.62 0.45 – – – – 70.07"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY24.pdf",
+   "page": 318,
+   "table": 0,
+   "line": 17,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x  62.5   V Taib Capital Corporation Limited 10 2,45,000 … 2,45,000 …",
+    "   x  48.3 B V INVESTMENT IN BONDS IN THE NATURE OF",
+    ">> x  48.4 B   DEBENTURES",
+    "   x  48.2 B   Quoted",
+    "   x  62.5 B V Tax Free Bonds - Secured, Redeemable &"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY24.pdf",
+   "page": 321,
+   "table": 0,
+   "line": 26,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x  79.9 B   Non-Convertible",
+    "   x  79.9 B   National Bank for Agriculture and Rural",
+    ">> x  79.9 B   Development",
+    "   x  79.6   V 6.40% - Series 20K - 31-Jul-2023 10,00,000 – – 2,700 268.84",
+    "   x  79.6 B V Small Industries Development Bank of India"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY24.pdf",
+   "page": 354,
+   "table": 0,
+   "line": 3,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x  61.5 B   1. Segment Revenue - Gross",
+    "   x  61.9   V FMCG - Cigarettes 33667.97 – 33667.97 31267.46 – 31267.46",
+    "   x  61.9   V FMCG - Others 20956.20 45.95 21002.15 19109.33 43.76 19153.09"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY25.pdf",
+   "page": 175,
+   "table": 0,
+   "line": 7,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  65.8 B   4. Non-current Investments (Contd.)",
+    "   x 195.3   V Brought forward 10343.85 9801.43",
+    ">> x  64.8 B   INVESTMENT IN PREFERENCE SHARES (Contd.)",
+    "   x  78.6     Wimco Limited",
+    "   x  93.2     (Cumulative Non-Convertible Redeemable"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY25.pdf",
+   "page": 175,
+   "table": 0,
+   "line": 11,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  93.2     (Cumulative Non-Convertible Redeemable",
+    "   x  93.4   V Preference Shares) 100 5,00,000 5.00 – –",
+    ">> x  79.3     ITC IndiVision Limited",
+    "   x  93.2     (Cumulative Non-Convertible Redeemable",
+    "   x  93.4   V Preference Shares) 100 2,20,00,000 220.00 2,20,00,000 220.00"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY25.pdf",
+   "page": 179,
+   "table": 0,
+   "line": 20,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x  78.4   V Nippon India Mutual Fund 10 28,00,48,239 334.51 24,38,33,990 269.43",
+    "   x  78.2   V SBI Mutual Fund 10 56,98,58,756 687.00 75,82,85,035 846.11",
+    ">> x  64.2 B   INVESTMENT IN ALTERNATIVE INVESTMENT FUNDS",
+    "   x  63.9 B   (at fair value through profit or loss)",
+    "   x  64.2 B   Unquoted"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY25.pdf",
+   "page": 184,
+   "table": 0,
+   "line": 31,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  51.4 B   INVESTMENT IN PREFERENCE SHARES",
+    "   x  51.4 B   In Subsidiaries (at amortised cost)",
+    ">> x  51.5 B   Unquoted",
+    "   x  65.2     Wimco Limited",
+    "   x  79.8     (Cumulative Non-Convertible Redeemable"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY25.pdf",
+   "page": 193,
+   "table": 1,
+   "line": 13,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  68.7   V Disputed Dues – Others – – – – 0.28 0.28",
+    "   x  68.3 B V SUB-TOTAL 902.16 167.23 0.05 1.61 0.28 1071.33",
+    ">> x  68.2     Accrued Payables (not due)",
+    "   x  68.0   V – Micro and Small Enterprises 120.57",
+    "   x  68.0   V – Others 3297.92"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY25.pdf",
+   "page": 400,
+   "table": 2,
+   "line": 12,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x  56.0 B   rupee of turnover equivalent/",
+    "   x  56.2     (Total Scope 1 and Scope 2 GHG emissions / Crore INR",
+    ">> x  56.3     Revenue from operations)",
+    "   x  55.6 B V Total Scope 1 and Scope 2 emission tonnes of CO 54 54",
+    "   x 305.4     2"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 175,
+   "table": 0,
+   "line": 32,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  78.9   V Sresta Global FZE [Refer Note 29(ix)] No par value 0.98 –",
+    "   x  64.9 B   In Associates (at cost)",
+    ">> x  64.8 B   Quoted",
+    "   x  79.3   V ITC Hotels Limited 1 83,00,00,000 4298.32 83,00,00,000 4298.32",
+    "   x  65.0 B   Unquoted"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 176,
+   "table": 0,
+   "line": 20,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x 275.2   V (2025 - ₹10) 1,25,000 0.79 25,000 0.42",
+    "   x  61.6   V VST Industries Limited 10 5,236 0.10 5,236 0.14",
+    ">> x  47.9 B   Unquoted",
+    "   x  61.5   V Andhra Pradesh Gas Power Corporation Limited 10 8,04,000 – 8,04,000 –",
+    "   x  62.0   V Bihar Hotels Limited 2 8,00,000 0.04 8,00,000 0.04"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 178,
+   "table": 0,
+   "line": 18,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  61.8   V 8.48% - Series 89A - 21-Nov-2028 10,00,000 1,250 128.17 1,250 129.22",
+    "   x  61.8   V 8.55% - Series 94A - 12-Feb-2029 10,00,000 130 13.37 130 13.49",
+    ">> x  62.1 B   National Highways Authority of India",
+    "   x  61.8   V 7.28% - Series NHAI - II B - 18-Sep-2030 10,00,000 2,500 250.00 2,500 250.00",
+    "   x  61.8   V 7.35% - Series II A - 11-Jan-2031 1,000 17,49,943 179.79 17,49,943 180.62"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 181,
+   "table": 0,
+   "line": 13,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x  78.3   V SBI Mutual Fund 10 26,72,22,501 347.01 56,98,58,756 687.00",
+    "   x  64.2 B   INVESTMENT IN ALTERNATIVE INVESTMENT FUNDS",
+    ">> x  64.0 B   (at fair value through profit or loss)",
+    "   x  64.3 B   Unquoted",
+    "   x  78.0   V Avaana Sustainability Fund 1,000 60,115 6.23 41,178 3.85"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 187,
+   "table": 0,
+   "line": 18,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  78.5   V Axis Mutual Fund 1,000 31,86,227 881.71 31,86,227 833.77",
+    "   x  79.0   V Bandhan Mutual Fund 10 14,17,61,931 360.66 14,17,61,931 341.56",
+    ">> x  78.7 B   Corporate Bond Funds",
+    "   x  79.0   V HDFC Mutual Fund 10 – – 1,58,86,798 51.67",
+    "   x 100.8   V ICICI Prudential Mutual Fund 10 2,42,40,779 78.68 4,30,40,789 131.43"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 187,
+   "table": 0,
+   "line": 23,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  79.0   V Kotak Mahindra Mutual Fund 1,000 – – 2,98,810 114.92",
+    "   x  78.7   V SBI Mutual Fund 10 – – 6,63,37,836 103.48",
+    ">> x  64.5 B   Current Portion of Non-current Investments",
+    "   x  64.7 B   INVESTMENT IN GOVERNMENT OR TRUST",
+    "   x  64.5 B   SECURITIES (at amortised cost)"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 188,
+   "table": 0,
+   "line": 21,
+   "split": "tune",
+   "wrap": "down",
+   "context": [
+    "   x  61.5   V 7.15% - Series 100 - 21-Aug-2025 10,00,000 – – 250 25.09",
+    "   x  61.5   V 7.19% - Series 99 - 31-Jul-2025 10,00,000 – – 2,250 225.11",
+    ">> x  61.8 B   National Bank for Agriculture and",
+    "   x  61.9 B   Rural Development",
+    "   x  61.5   V 7.07% - Series 1A - 25-Feb-2026 10,00,000 – – 2,000 201.52"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 189,
+   "table": 0,
+   "line": 15,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  78.9 B V Perpetual Bonds - Unsecured, Subordinated &",
+    "   x  78.9 B   Non-Convertible#",
+    ">> x  78.6 B   State Bank of India",
+    "   x  78.5   V 7.72% - Series I (with first Call option 03-Sep-2026) 1,00,00,000 313 313.00 – –",
+    "   x  78.5   V 7.72% - Series II (with first Call option 18-Oct-2026) 1,00,00,000 400 400.00 – –"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 275,
+   "table": 0,
+   "line": 5,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x  65.6 B   4. Non-current investments (Contd.)",
+    "   x 183.8   V Brought forward 7342.87 8141.02",
+    "   x  65.3 B   INVESTMENT IN PREFERENCE SHARES (Contd.)"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 275,
+   "table": 0,
+   "line": 16,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x  76.5     Sproutlife Foods Private Limited",
+    "   x  76.6     [Refer Note 30(iv)(b)]",
+    ">> x  90.8     (Compulsorily Convertible Cumulative",
+    "   x  91.0   V Preference Shares) 10 10,984 10,984",
+    "   x  90.6   V Cost of acquisition 214.68 214.68"
+   ]
+  },
+  {
+   "name": "annual/ITC-FY26.pdf",
+   "page": 275,
+   "table": 0,
+   "line": 43,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  65.1 B   comprehensive income)",
+    "   x  65.2 B   Quoted",
+    ">> x  65.2 B   Government of India Stock",
+    "   x  76.5   V 6.33% - Government Stock - 05-May-2035 100 25,00,000 24.01 – –",
+    "   x  76.5   V 6.48% - Government Stock - 06-Oct-2035 100 5,00,000 4.81 – –"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY24.pdf",
+   "page": 193,
+   "table": 0,
+   "line": 26,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x 114.6     equal annual installments.",
+    "   x 128.9 B V LXI Issue-7.74% redeemable w.e.f. 12.12.2028 3,070.26 3,069.80",
+    ">> x 114.9     iv) Bonds of ₹10 Lakhs each",
+    "   x 134.4 B V LXIX Issue-6.05% Redeemable at par on 25.03.2027 530.50 530.49",
+    "   x 136.9 B V LXVII Issue-6.85% redeemable at par on 15.04.2025 2,984.40 2,984.33"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY24.pdf",
+   "page": 193,
+   "table": 1,
+   "line": 22,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x 710.4     (refer note 28)",
+    "   x 710.1   V Less: Interest accrued but not due on borrowings 2,906.88 2,956.59",
+    ">> x 710.4     (refer note 30)",
+    "   x 709.8 B V Total 105,066.95 113,891.29"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY25.pdf",
+   "page": 240,
+   "table": 0,
+   "line": 8,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x  61.4     Sikar Khetri Transmission Limited)",
+    "   x  61.6   V Powergrid Bidar Transmission Limited (Erstwhile Bidar India 100% 100%",
+    ">> x  61.2     Transmission Limited)",
+    "   x  61.6   V Powergrid Khavda IV-E2 Power Transmission Limited India 100% NA",
+    "   x  61.8     (Erstwhile Khavda IV-E2 Power Transmission Limited) 1"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY25.pdf",
+   "page": 240,
+   "table": 0,
+   "line": 16,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x  61.6     Rajasthan IV E Power Transmission Limited) 2",
+    "   x  61.6   V Powergrid Sirohi Transmission Limited (Erstwhile Sirohi India 100% NA",
+    ">> x  61.2     Transmission Limited) 3",
+    "   x  61.6   V Powergrid Beawar-Mandsaur Transmission Limited India 100% NA",
+    "   x  61.9     (Erstwhile Beawar-Mandsaur Transmission Limited) 3"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY26.pdf",
+   "page": 218,
+   "table": 0,
+   "line": 49,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x 114.9     ix) Bonds of ₹1.20 crore each consisting of 12 STRPPs",
+    "   x 114.6     of ₹10 lakh each redeemable at par in 12 (Twelve)",
+    ">> x 114.6     equal annual installments",
+    "   x 120.8 B V L Issue-8.40% redeemable w.e.f. 27.05.2019 1,306.73 1,568.06",
+    "   x 114.9     x) Bonds of ₹1.20 crore each consisting of 12 STRPPs"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY26.pdf",
+   "page": 320,
+   "table": 1,
+   "line": 6,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x  60.1 B   Current Assets",
+    "   x  60.1   V Cash & Cash Equivalent 3.17 8.64 25.28 46.32 251.23 225.08 273.89 650.05",
+    "   x  60.1   V Other Assets 128.55 143.27 8.15 8.02 473.45 606.38 4,915.28 5,530.54"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY26.pdf",
+   "page": 320,
+   "table": 1,
+   "line": 20,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x  60.1   V Other Liabilities 32.86 32.96 0.66 0.68 249.21 240.00 590.18 45.72",
+    "   x  60.0 B V Total Non-Current 370.10 397.82 0.66 36.45 1,927.31 2,109.38 4,449.82 4,219.55",
+    ">> x  60.4 B   Liabilities",
+    "   x  60.4 B V Net Assets 583.77 565.03 155.23 135.66 853.20 915.66 353.75 888.91"
+   ]
+  },
+  {
+   "name": "annual/POWERGRID-FY26.pdf",
+   "page": 320,
+   "table": 3,
+   "line": 9,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x 656.9   V Profit for the year 82.24 78.76 1.42 15.72 6.24 45.97 8.74 64.81",
+    "   x 656.6   V Other Comprehensive 0.34 (0.26) (0.02) (0.06) - (0.02) 0.03 -",
+    ">> x 656.8     income",
+    "   x 657.0   V Dividend Paid 95.94 161.46 - 15.30 21.83 39.55 116.53 -",
+    "   x 656.7   V Other Adjustments - - - (0.93) - - 0.18 (3.84)"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY24.pdf",
+   "page": 81,
+   "table": 2,
+   "line": 16,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x  92.7 B   As at 31st March, 2023",
+    "   x 110.5   V 1 Fully paid-up equity Mukesh D Ambani 80,52,020 - 80,52,020 0.12 -",
+    ">> x 110.0     shares of ₹ 10 each",
+    "   x  93.0 B V Total 80,52,020 - 80,52,020 0.12"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY24.pdf",
+   "page": 121,
+   "table": 0,
+   "line": 20,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  73.0   V Jio Financial Services Limited Trust [₹ 30,000; (Previous Year ₹ Nil)] - -",
+    "   x 430.2 B V - -",
+    ">> x  73.5 B   In Others",
+    "   x  73.5   V 3one4 Capital Fund Scheme II of ₹ 1,00,000 each 19,36,19,703 123 2,000 123",
+    "   x  73.0   V ACRE - 114 Trust Class A of ₹ 1 each 83,51,42,862 84 83,51,42,862 84"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY24.pdf",
+   "page": 121,
+   "table": 1,
+   "line": 3,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x  53.6 B   2.1 Category-wise Investments – Non-Current",
+    "   x  73.6   V Financial Assets measured at Cost 18,073 13,646",
+    "   x  73.6   V Financial Assets measured at Amortised Cost 16 15"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY24.pdf",
+   "page": 121,
+   "table": 4,
+   "line": 4,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x 668.8 B   5. Deferred Tax",
+    ">> x 668.5 B   Component of Deferred Tax",
+    "   x 668.9   V Deferred Tax Assets (Net) 938 1,549",
+    "   x 668.9   V Less: Deferred Tax Liabilities (Net) 72,241 60,324"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY24.pdf",
+   "page": 127,
+   "table": 0,
+   "line": 5,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  73.5 B   20. Borrowings – Current",
+    "   x  73.1 B   Secured – At Amortised Cost",
+    ">> x  73.1     Working Capital Loans",
+    "   x  73.6     From Banks",
+    "   x  85.0   V Foreign Currency Loans 71 1,474"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY24.pdf",
+   "page": 128,
+   "table": 2,
+   "line": 2,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    ">> x  73.2 B   26. Other Income",
+    "   x  73.6     Interest",
+    "   x  93.5   V Bank Deposits 4,679 1,806"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY25.pdf",
+   "page": 64,
+   "table": 5,
+   "line": 13,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x 668.7     Unquoted, fully paid up",
+    "   x 668.9   V BAM DLR Chennai Private Limited - 11.5% Non Convertible 63,00,000 63 63,00,000 63",
+    ">> x 668.9     Debenture of ₹ 100 each.",
+    "   x1012.3   V 63 63",
+    "   x 668.8     In Preference Shares of Other Companies"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY26.pdf",
+   "page": 112,
+   "table": 1,
+   "line": 8,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  73.6   V Non-Convertible Debentures 20,545 - 20,415 1,000",
+    "   x 311.4 B V 20,545 - 20,415 1,000",
+    ">> x  73.5 B   Unsecured - At Amortised cost",
+    "   x  73.6   V Non-Convertible Debentures 7,369 - 7,367 1,645",
+    "   x  73.6   V Bonds 57,274 510 52,048 683"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY26.pdf",
+   "page": 153,
+   "table": 0,
+   "line": 4,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  73.5 B   17. Deferred Payment Liabilities",
+    ">> x  73.4 B   Unsecured",
+    "   x  73.6   V Payable to Department of Telecommunication (\"DoT\") ^ 99,552 4,962 1,04,410 4,736",
+    "   x  73.3   V Others - - - 2"
+   ]
+  },
+  {
+   "name": "annual/RELIANCE-FY26.pdf",
+   "page": 153,
+   "table": 2,
+   "line": 11,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  73.6     From Others",
+    "   x  93.4   V Rupee Loans 7 -",
+    ">> x  73.4 B   Unsecured – At Amortised Cost",
+    "   x  73.0     Working Capital Loans",
+    "   x  73.6     From Others"
+   ]
+  },
+  {
+   "name": "annual/SUNPHARMA-FY25.pdf",
+   "page": 278,
+   "table": 0,
+   "line": 3,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    ">> x  50.8 B   Movement in the expected credit loss allowance on trade receivables",
+    "   x  50.9   V Balance at the beginning of the year 4,058.1 4,149.3",
+    "   x  78.5   V Addition 799.4 746.8"
+   ]
+  },
+  {
+   "name": "annual/SUNPHARMA-FY26.pdf",
+   "page": 307,
+   "table": 0,
+   "line": 8,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x  50.8 B   Expense recognised in the consolidated",
+    ">> x  50.4 B   statement of profit and loss (Refer Note 34)",
+    "   x  64.8   V Current service cost - - 952.7 - - 731.8",
+    "   x  65.1   V Past service cost - - 2,799.1 - - -"
+   ]
+  },
+  {
+   "name": "annual/SUNPHARMA-FY26.pdf",
+   "page": 307,
+   "table": 0,
+   "line": 15,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x  65.1   V Expected return on plan assets - - (362.2) - - (391.0)",
+    "   x  50.8 B V Expense charged to the consolidated statement 5.2 (420.1) 4,016.6 5.7 73.5 871.5",
+    ">> x  50.4 B   of profit and loss",
+    "   x  50.8 B   Remeasurement of defined benefit obligation",
+    "   x  50.7 B   recognised in other comprehensive income"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY24.pdf",
+   "page": 326,
+   "table": 0,
+   "line": 12,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x 261.5 B V 460.72 23.66 16.24 1.46 0.23 502.31",
+    "   x  75.2 B   Outstanding dues other than micro and small",
+    ">> x  75.2 B   enterprises",
+    "   x  95.3   V (a) Disputed dues 133.90 4.23 - - - 138.13",
+    "   x  95.3   V (b) Undisputed dues 80,849.43 5,960.34 376.54 183.75 32.45 87,402.51"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY25.pdf",
+   "page": 394,
+   "table": 0,
+   "line": 9,
+   "split": "tune",
+   "wrap": "down",
+   "context": [
+    "   x 115.1 B   Financial liabilities measured at fair value",
+    "   x 135.1   V (a) Derivative liabilities - 2,424 - 2,424",
+    ">> x 135.1     (b) Financial Liabilities (Compulsorily convertible",
+    "   x 135.0   V preference shares) - - 2,464 2,464",
+    "   x 134.4 B V Total - 2,424 2,464 4,888"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY25.pdf",
+   "page": 395,
+   "table": 1,
+   "line": 8,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x 134.4 B V Total 12,433 - 13,865 26,298",
+    "   x 115.2 B   Financial liabilities not measured at fair value",
+    ">> x 135.1     (a) Long-term borrowings (including current maturities",
+    "   x 134.8   V of long term borrowing) 43,581 50,605 - 94,186",
+    "   x 134.7   V (b) Short-term borrowings - 5,735 - 5,735"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY25.pdf",
+   "page": 455,
+   "table": 3,
+   "line": 2,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x  75.4 B   Unsecured:",
+    "   x  95.4   V (a) Loans to employees, considered good 18 28",
+    "   x  95.4     (b) Loan to subsidiaries"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY25.pdf",
+   "page": 455,
+   "table": 3,
+   "line": 18,
+   "split": "tune",
+   "wrap": "down",
+   "context": [
+    "   x  95.4   V Less : Allowances for credit impaired balances (21) 7 (21) 1",
+    "   x  75.1 B   Secured:",
+    ">> x  95.4     Loan to subsidiary company - Tata Motors Body Solutions",
+    "   x  95.4   V Limited (refer note below) 174 -",
+    "   x  94.8 B V Total 255 102"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY25.pdf",
+   "page": 456,
+   "table": 1,
+   "line": 10,
+   "split": "tune",
+   "wrap": "down",
+   "context": [
+    "   x  95.4     (f) Dues from a subsidiary company - Tata Hispano Motors Carrocera Maghreb S.A.",
+    "   x 538.6   V 9 -",
+    ">> x  95.0     (g) Security deposits (net of allowances for credit impaired balances of ₹2 crores and",
+    "   x  95.0   V ₹2 crores as at March 31, 2025 and March 31, 2024, respectively) 42 35",
+    "   x  95.1   V (h) Other 2 2"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY25.pdf",
+   "page": 461,
+   "table": 0,
+   "line": 6,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    ">> x 114.9 B   (i) Ordinary shares :",
+    "   x 114.6   V Tata Sons Private Limited 1,47,82,63,541 40.16% 1,45,21,13,801 43.69% (3.53%)",
+    "   x 115.0 B   (ii) ‘A’ Ordinary shares :"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY26.pdf",
+   "page": 382,
+   "table": 0,
+   "line": 8,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x  95.3   V Balance at the beginning 28,080 1,699 3,157 328",
+    ">> x  95.4     Demerger of Commercial Vehicle undertaking",
+    "   x  95.3   V (refer note 50(I)) (2,563) - - (345)",
+    "   x  95.4   V Provision made/(reversed) during the year (net) 17,658 3,212 (859) 10"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY26.pdf",
+   "page": 391,
+   "table": 0,
+   "line": 5,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x 114.7     Amount recognised in the balance sheet",
+    ">> x 114.9     consists of:",
+    "   x 115.3   V Present value of defined benefit obligation 871 2,129 92 608",
+    "   x 115.3   V Fair value of plan assets 732 1,921 - -"
+   ]
+  },
+  {
+   "name": "annual/TATAMOTORS-FY26.pdf",
+   "page": 410,
+   "table": 2,
+   "line": 10,
+   "split": "tune",
+   "wrap": "down",
+   "context": [
+    "   x 115.2 B   Financial liabilities measured at fair value",
+    "   x 135.1   V (a) Derivative liabilities - 2,424 - 2,424",
+    ">> x 135.1     (b) Financial liabilities (Compulsorily convertible",
+    "   x 135.0   V preference shares) - - 2,464 2,464",
+    "   x 134.5 B V Total - 2,424 2,464 4,888"
+   ]
+  },
+  {
+   "name": "annual/WIPRO-FY24.pdf",
+   "page": 304,
+   "table": 0,
+   "line": 19,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x  83.6   V Bonds - 54,025 - - 54,025",
+    "   x  83.6   V Inter corporate and term deposits - - - 23,775 23,775",
+    ">> x  69.5     Other financial assets",
+    "   x  82.9   V Trade receivables (Refer to Note 11) - - - 127,213 127,213",
+    "   x  83.5   V Unbilled receivables - - - 60,515 60,515"
+   ]
+  },
+  {
+   "name": "annual/WIPRO-FY24.pdf",
+   "page": 372,
+   "table": 0,
+   "line": 36,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x  61.6     Trade payables, accrued expenses, other liabilities and",
+    "   x 320.9   V 9,695 (9,824) (435) (5)",
+    ">> x  62.3     provisions",
+    "   x  62.0   V Contract liabilities 3,832 (6,522) (5,053) (61)",
+    "   x  53.3 B V Cash generated from operating activities before taxes 136,483 160,819 191,576 2,299"
+   ]
+  },
+  {
+   "name": "annual/WIPRO-FY25.pdf",
+   "page": 506,
+   "table": 1,
+   "line": 1,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x 223.4 B V % of value chain partners (by value of business done with such partners) that were assessed",
+    ">> x  73.3     Child labor",
+    "   x  73.7     Forced/involuntary labor",
+    "   x  73.3     Sexual harassment"
+   ]
+  },
+  {
+   "name": "annual/WIPRO-FY26.pdf",
+   "page": 424,
+   "table": 0,
+   "line": 10,
+   "split": "holdout",
+   "wrap": "up",
+   "context": [
+    "   x 157.1   V (3,943,096) - -",
+    "   x  93.1     on exercise of",
+    ">> x  93.1     options",
+    "   x  92.8     Add: Bonus issue",
+    "   x  93.0   V of equity shares - 5,952,740 -"
+   ]
+  },
+  {
+   "name": "annual/WIPRO-FY26.pdf",
+   "page": 485,
+   "table": 0,
+   "line": 48,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x 304.3     Wipro Do Brasil Sistemas De",
+    "   x 422.8   V Brazil 0.07%",
+    ">> x 304.8     Informatica Ltda",
+    "   x 304.3     Wipro do Brasil Technologia",
+    "   x 422.8   V Brazil 99.44%"
+   ]
+  },
+  {
+   "name": "results/ITC-2024-03-31.pdf",
+   "page": 6,
+   "table": 0,
+   "line": 28,
+   "split": "tune",
+   "wrap": "up",
+   "context": [
+    "   x 162.9 B   ii) Other un-alloca_ble (income) net of",
+    "   x 163.0 B V un-allocable (382.31) (391.34) (718.13) (2115.55) (1254.48)",
+    ">> x 198.7 B   expenditure [Note (ii)]",
+    "   x 163.0 B V iii) Exceptional Items• 2.05 (72.87) 5.52 7.57 (72.87)",
+    "   x 101.3 B V Profit Before Tax 6531.70 6594.80 6724.98 26315.77 24750.41"
+   ]
+  },
+  {
+   "name": "results/ITC-2024-03-31.pdf",
+   "page": 8,
+   "table": 0,
+   "line": 44,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x 103.9 B V Dividend received 990.35 556.90",
+    "   x 103.6 B V Interest received 1016.53 1216.27",
+    ">> x 103.9 B   Investment in bank deposits",
+    "   x 384.5 B V (3578.11) (7427.20)",
+    "   x 103.7 B   (original maturity more than 3 months)"
+   ]
+  },
+  {
+   "name": "results/ITC-2024-12-31.pdf",
+   "page": 10,
+   "table": 0,
+   "line": 26,
+   "split": "holdout",
+   "wrap": "down",
+   "context": [
+    "   x  91.5 B V Total 6343.71 6265.04 6562.57 19374.68 18836.25 25154.32",
+    "   x  71.1 B V Less: i) Finance Costs 9.82 11.94 14.73 34.15 28.39 39.11",
+    ">> x 118.3 B   ii) Other un-allocable (income) net of",
+    "   x 284.9 B V (198.07) (209.43) (184.20) (738.28) (988.18) (1270.64)",
+    "   x 118.3 B   un-allocable expenditure (Refer Note)"
+   ]
+  },
+  {
+   "name": "results/ITC-2024-12-31.pdf",
+   "page": 10,
+   "table": 0,
+   "line": 43,
+   "split": "holdout",
+   "wrap": "none",
+   "context": [
+    "   x  92.2 B V Unallocated Corporate Assets 43812.18 43077.46 38070.30 43812.18 43077.46 41772.62",
+    "   x  48.0 B V Total Assets 99186.22 91729.66 94071.21 99186.22 91729.66 91826.16",
+    ">> x  71.2 B   4. Segment Liabilities",
+    "   x  92.4 B V a) FMCG - Cigarettes 6037.08 5467.66 6096.99 6037.08 5467.66 5442.84",
+    "   x 123.1 B V - Others 2424.46 2493.52 2499.58 2424.46 2493.52 2491.34"
+   ]
+  },
+  {
+   "name": "results/ITC-2025-03-31.pdf",
+   "page": 13,
+   "table": 0,
+   "line": 15,
+   "split": "tune",
+   "wrap": "none",
+   "context": [
+    "   x 158.7   V (g) Right-of-use assets 581.89 939.12",
+    "   x 159.4   V (h) Investment accounted for using the equity method 4711.78 549.73",
+    ">> x 158.8     (i) Financial Assets",
+    "   x 167.8   V (i) Investments 13720.54 17619.87",
+    "   x 169.7   V (ii) Loans 7.60 4.05"
+   ]
+  }
+ ]
+}

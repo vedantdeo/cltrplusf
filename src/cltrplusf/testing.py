@@ -18,10 +18,18 @@ from docling_core.types.doc.common.reference import ProvenanceItem
 from docling_core.types.doc.document import DoclingDocument
 from docling_core.types.doc.items.table.table_data import TableCell, TableData
 from docling_core.types.doc.labels import DocItemLabel
-from pypdf import PdfReader
+from pypdf import PdfReader, PdfWriter
+from pypdf.generic import (
+    ArrayObject,
+    DecodedStreamObject,
+    DictionaryObject,
+    NameObject,
+    RectangleObject,
+)
 
 from cltrplusf import corpus
 from cltrplusf.embed import Vectors
+from cltrplusf.tables.model import Piece as LinePiece
 
 
 @dataclass(frozen=True)
@@ -379,3 +387,36 @@ class BagOfWordsEmbedder:
             vector[0] = 1.0
             return vector
         return cast(Vectors, vector / norm)
+
+
+def printed_pdf(
+    path: Path, lines: Sequence[tuple[float, float, str]], crop: tuple[float, float] = (0, 0)
+) -> Path:
+    """A one-page PDF printing each text at its left edge and baseline, its crop box starting
+    `crop` from the media box's corner."""
+    writer = PdfWriter()
+    page = writer.add_blank_page(612, 792)
+    page.cropbox = RectangleObject((crop[0], crop[1], 612, 792))
+    font = DictionaryObject(
+        {
+            NameObject("/Type"): NameObject("/Font"),
+            NameObject("/Subtype"): NameObject("/Type1"),
+            NameObject("/BaseFont"): NameObject("/Helvetica"),
+        }
+    )
+    page[NameObject("/Resources")] = DictionaryObject(
+        {NameObject("/Font"): DictionaryObject({NameObject("/F1"): font})}
+    )
+    stream = DecodedStreamObject()
+    stream.set_data(
+        "\n".join(f"BT /F1 6 Tf {x} {y} Td ({text}) Tj ET" for x, y, text in lines).encode()
+    )
+    page[NameObject("/Contents")] = ArrayObject([writer._add_object(stream)])
+    with path.open("wb") as out:
+        writer.write(out)
+    return path
+
+
+def piece(text: str, left: float, right: float, top: float = 0.0, bold: bool = False) -> LinePiece:
+    """A piece of a printed line, 8 points tall, for tests of `tables`."""
+    return LinePiece(text, (left, top, right, top + 8.0), bold)

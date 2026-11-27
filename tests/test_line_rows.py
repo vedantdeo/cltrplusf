@@ -9,20 +9,12 @@ from pathlib import Path
 import pypdfium2 as pdfium
 import pytest
 from docling_core.types.doc.document import DoclingDocument
-from pypdf import PdfWriter
-from pypdf.generic import (
-    ArrayObject,
-    DecodedStreamObject,
-    DictionaryObject,
-    NameObject,
-    RectangleObject,
-)
 
 from cltrplusf import filed, line_rows
 from cltrplusf.chunk import Document
 from cltrplusf.corpus import assembled, elements_of, table_rows
 from cltrplusf.line_rows import Box, Layout, PdfBox, Word
-from cltrplusf.testing import Grid, build_pdf, docling
+from cltrplusf.testing import Grid, build_pdf, docling, printed_pdf
 
 
 def _chars(
@@ -598,34 +590,6 @@ _PRINTED = [  # (left, baseline, text) as the page prints it
 ]
 
 
-def _printed(
-    path: Path, lines: Sequence[tuple[float, float, str]], crop: tuple[float, float] = (0, 0)
-) -> Path:
-    """A one-page PDF printing each text at its left edge and baseline, its crop box starting
-    `crop` from the media box's corner."""
-    writer = PdfWriter()
-    page = writer.add_blank_page(612, 792)
-    page.cropbox = RectangleObject((crop[0], crop[1], 612, 792))
-    font = DictionaryObject(
-        {
-            NameObject("/Type"): NameObject("/Font"),
-            NameObject("/Subtype"): NameObject("/Type1"),
-            NameObject("/BaseFont"): NameObject("/Helvetica"),
-        }
-    )
-    page[NameObject("/Resources")] = DictionaryObject(
-        {NameObject("/Font"): DictionaryObject({NameObject("/F1"): font})}
-    )
-    stream = DecodedStreamObject()
-    stream.set_data(
-        "\n".join(f"BT /F1 6 Tf {x} {y} Td ({text}) Tj ET" for x, y, text in lines).encode()
-    )
-    page[NameObject("/Contents")] = ArrayObject([writer._add_object(stream)])
-    with path.open("wb") as out:
-        writer.write(out)
-    return path
-
-
 @pytest.mark.parametrize(
     ("crop", "left", "bottom"),
     [
@@ -636,7 +600,7 @@ def _printed(
 def test_page_words_reads_each_word_and_where_it_sits(
     tmp_path: Path, crop: tuple[float, float], left: float, bottom: float
 ) -> None:
-    pdf = pdfium.PdfDocument(_printed(tmp_path / "p.pdf", [(55, 630, "Other income 5")], crop))
+    pdf = pdfium.PdfDocument(printed_pdf(tmp_path / "p.pdf", [(55, 630, "Other income 5")], crop))
     words = line_rows.page_words(pdf[0])
     assert [w for w, _, _ in words] == ["Other", "income", "5"], words
     assert all(
@@ -651,7 +615,7 @@ def _rendered(grid: Grid) -> tuple[Document, DoclingDocument]:
 
 def test_a_table_docling_merged_is_re_rowed_by_its_printed_lines(tmp_path: Path) -> None:
     document, parsed = _rendered(_MERGED)
-    words = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
+    words = filed.read_words(printed_pdf(tmp_path / "p.pdf", _PRINTED), [1])
     [table] = filed.with_line_rows(document, parsed, words).tables
     assert table.rows == (
         ("Particulars", "Jun", "Mar"),
@@ -691,7 +655,7 @@ def test_a_table_that_cannot_be_re_rowed_stays_as_docling_read_it(
     if split:
         item = parsed.tables[0]
         item.prov.append(item.prov[0].model_copy())
-    words = filed.read_words(_printed(tmp_path / "p.pdf", printed), [1])
+    words = filed.read_words(printed_pdf(tmp_path / "p.pdf", printed), [1])
     assert filed.with_line_rows(document, parsed, words).tables == document.tables
 
 
@@ -702,7 +666,7 @@ def test_a_re_rowed_table_keeps_its_caption_and_doclings_marks_over_the_rows_kep
     document, parsed = _rendered(grid)
     [before] = document.tables
     assert (before.header_rows, before.sections) == (3, (1, 3))
-    words = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
+    words = filed.read_words(printed_pdf(tmp_path / "p.pdf", _PRINTED), [1])
     [table] = filed.with_line_rows(document, parsed, words).tables
     assert table.rows[:2] == (("Results",), ("Particulars", "Jun", "Mar")), table.rows
     assert (table.header_rows, table.sections) == (2, (1,)), table
@@ -711,7 +675,7 @@ def test_a_re_rowed_table_keeps_its_caption_and_doclings_marks_over_the_rows_kep
 def test_a_rendered_table_matching_none_of_doclings_is_refused(tmp_path: Path) -> None:
     document, _ = _rendered(_MERGED)
     _, parsed = _rendered(Grid(rows=(("Cash", "1", "2"),), box=(50, 600, 350, 700)))
-    words = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED), [1])
+    words = filed.read_words(printed_pdf(tmp_path / "p.pdf", _PRINTED), [1])
     with pytest.raises(ValueError, match="matches none of Docling's"):
         filed.with_line_rows(document, parsed, words)
 
@@ -719,7 +683,7 @@ def test_a_rendered_table_matching_none_of_doclings_is_refused(tmp_path: Path) -
 def test_a_filed_pdf_is_re_rowed_once_and_a_re_rowing_change_reuses_its_words(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    path = _printed(tmp_path / "results.pdf", _PRINTED)
+    path = printed_pdf(tmp_path / "results.pdf", _PRINTED)
     cache = tmp_path / "cache"
     _, parsed = _rendered(_MERGED)
     loads: list[str] = []
@@ -755,7 +719,7 @@ def test_a_filed_pdf_is_re_rowed_once_and_a_re_rowing_change_reuses_its_words(
 def test_a_filed_pdfs_words_are_read_once_for_its_pages_with_tables(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    path = _printed(tmp_path / "results.pdf", _PRINTED)
+    path = printed_pdf(tmp_path / "results.pdf", _PRINTED)
     cache = tmp_path / "cache"
     parsed = docling([[], [_MERGED], []])
     reads: list[Sequence[int]] = []
@@ -824,6 +788,6 @@ def test_a_pdf_is_read_with_its_rupee_fonts_as_the_rupee_sign(tmp_path: Path) ->
 
 
 def test_a_pdfs_words_are_kept_to_a_hundredth_of_a_point(tmp_path: Path) -> None:
-    [(page, words)] = filed.read_words(_printed(tmp_path / "p.pdf", _PRINTED[:3]), [1]).items()
+    [(page, words)] = filed.read_words(printed_pdf(tmp_path / "p.pdf", _PRINTED[:3]), [1]).items()
     assert page == 1 and [w for w, _, _ in words] == ["Particulars", "Jun", "Mar"], words
     assert all(round(c, 2) == c for _, box, _ in words for c in box), words
